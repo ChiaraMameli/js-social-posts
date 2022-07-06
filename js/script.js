@@ -32,20 +32,6 @@ Se clicchiamo sul tasto "Mi Piace" cambiamo il colore al testo del bottone e inc
  Ragioniamo tanto sulla definizione dell'oggetto, se sbagliamo quello tutto diventa più difficile!
 */
 
-const display = document.getElementById('container')
-
-const posts = [
-    {
-        postId: 1,
-        authorName: 'chiara',
-        authorPic: 'bla',
-        publicationDate: '09/23/2006',
-        postDescription: 'lorem ipsum',
-        postPicture: 'pic.jpg',
-        postLikes: 10
-    }
-]
-
 // Funzione per creare un elemento
 const createElement = (tag, ...classNames) => {
     let myElement;
@@ -54,71 +40,113 @@ const createElement = (tag, ...classNames) => {
     return myElement
 }
 
+// Creo l'array
+const display = document.getElementById('container')
 
-// DIV PRINCIPALE
-const divPost = createElement('div', 'post');
-display.append(divPost);
+const posts = [
+    {
+        postId: 1,
+        authorName: 'Phil Mangione',
+        authorPic: 'https://unsplash.it/300/300?image=15',
+        publicationDate: '09/23/2006',
+        postDescription: 'Placeat libero ipsa nobis ipsum quibusdam quas harum ut. Distinctio minima iusto. Ad ad maiores et sint voluptate recusandae architecto. Et nihil ullam aut alias.',
+        postPicture: 'https://unsplash.it/600/300?image=171',
+        postLikes: 10
+    },
+    {
+        postId: 2,
+        authorName: 'Eiran Roselyn',
+        authorPic: 'https://unsplash.it/300/300?image=14',
+        publicationDate: '09/23/2006',
+        postDescription: '',
+        postPicture: 'https://picsum.photos/id/236/200/300',
+        postLikes: 79
+    },
+    {
+        postId: 3,
+        authorName: 'Jana Dídac',
+        authorPic: 'https://unsplash.it/300/300?image=13',
+        publicationDate: '09/23/2006',
+        postDescription: 'Placeat libero ipsa nobis ipsum quibusdam quas harum ut.',
+        postPicture: 'https://picsum.photos/id/237/200/300',
+        postLikes: 48
+    },
+    {
+        postId: 4,
+        authorName: 'Joaquima Manyara',
+        authorPic: 'https://unsplash.it/300/300?image=12',
+        publicationDate: '09/23/2006',
+        postDescription: 'Placeat libero ipsa nobis ipsum quibusdam quas harum ut. Distinctio minima iusto. Ad ad maiores et sint voluptate recusandae architecto. Et nihil ullam aut alias.',
+        postPicture: 'https://picsum.photos/id/238/200/300',
+        postLikes: 3
+    }
 
+]
+  
 
-// POST HEADER
-const postHeader = createElement('div', 'post__header');
-divPost.append(postHeader);
-
-const postMeta = createElement('div', 'post-meta');
-postHeader.append(postMeta);
-
-const postMetaIcon = createElement('div', 'post-meta__icon');
-postMeta.append(postMetaIcon);
-
-postMetaIcon.innerHTML = `<img class="profile-pic" src="https://unsplash.it/300/300?image=15" alt="Phil Mangione" />`
-
-const postMetaData = createElement('div', 'post-meta__data');
-postMeta.append(postMetaData);
-
-const postMetaAuthor = createElement('div', 'post-meta__author');
-postMetaData.append(postMetaAuthor);
-postMetaAuthor.innerText = 'Phil Mangione';
-
-const postMetaTime = createElement('div', 'post-meta__time');
-postMetaData.append(postMetaTime);
-postMetaTime.innerText = '4 mesi fa';
-
-// POST TEXT
-const postText = createElement('div', 'post__text');
-divPost.append(postText);
-postText.innerText = 'Placeat libero ipsa nobis ipsum quibusdam quas harum ut. Distinctio minima iusto. Ad ad maiores et sint voluptate recusandae architecto. Et nihil ullam aut alias.';
-
-// POST IMAGE
-
-const postImage = createElement('div', 'post__image');
-divPost.append(postImage);
-postImage.innerHTML = `<img src="https://unsplash.it/600/300?image=171" alt="" />`;
-
-// POST FOOTER
-
-const postFooter = createElement('div', 'post__footer');
-divPost.append(postFooter);
-
-const postLikesJS = createElement('div', 'likes', 'js-likes');
-postFooter.append(postLikesJS);
-
-const postLikesCTA = createElement('div', 'likes__cta');
-postLikesJS.append(postLikesCTA);
-
-const postLikesButton = createElement('a', 'like-button', 'js-like-button');
-postLikesCTA.append(postLikesButton);
-
-const postLikesButtonIcon = createElement('i', 'like-button__icon', 'fas', 'fa-thumbs-up');
-postLikesButton.append(postLikesButtonIcon);
-
-const postLikesLabel = createElement('span', 'like-button__label');
-postLikesButton.append(postLikesLabel);
-postLikesLabel.innerText = 'Mi Piace';
-
-const postLikesCounter = createElement('div', 'likes__counter');
-postLikesJS.append(postLikesCounter);
-postLikesCounter.innerText = 'Piace a 80 persone';
+for(const item of posts) {
+    // DIV PRINCIPALE
+    const divPost = createElement('div', 'post');
+    display.append(divPost);
 
 
+    // POST HEADER
+    const postHeader = createElement('div', 'post__header');
+    divPost.append(postHeader);
 
+    const postMeta = createElement('div', 'post-meta');
+    postHeader.append(postMeta);
+
+    const postMetaIcon = createElement('div', 'post-meta__icon');
+    postMeta.append(postMetaIcon);
+
+    postMetaIcon.innerHTML = `<img class="profile-pic" src="${item['authorPic']}" alt="${item['authorName']}" />`
+
+    const postMetaData = createElement('div', 'post-meta__data');
+    postMeta.append(postMetaData);
+
+    const postMetaAuthor = createElement('div', 'post-meta__author');
+    postMetaData.append(postMetaAuthor);
+    postMetaAuthor.innerText = item['authorName'];
+
+    const postMetaTime = createElement('div', 'post-meta__time');
+    postMetaData.append(postMetaTime);
+    postMetaTime.innerText = item['publicationDate'];
+
+    // POST TEXT
+    const postText = createElement('div', 'post__text');
+    divPost.append(postText);
+    postText.innerText = item['postDescription']
+
+    // POST IMAGE
+
+    const postImage = createElement('div', 'post__image');
+    divPost.append(postImage);
+    postImage.innerHTML = `<img src="${item['postPicture']}" alt="" />`;
+
+    // POST FOOTER
+
+    const postFooter = createElement('div', 'post__footer');
+    divPost.append(postFooter);
+
+    const postLikesJS = createElement('div', 'likes', 'js-likes');
+    postFooter.append(postLikesJS);
+
+    const postLikesCTA = createElement('div', 'likes__cta');
+    postLikesJS.append(postLikesCTA);
+
+    const postLikesButton = createElement('a', 'like-button', 'js-like-button');
+    postLikesCTA.append(postLikesButton);
+
+    const postLikesButtonIcon = createElement('i', 'like-button__icon', 'fas', 'fa-thumbs-up');
+    postLikesButton.append(postLikesButtonIcon);
+
+    const postLikesLabel = createElement('span', 'like-button__label');
+    postLikesButton.append(postLikesLabel);
+    postLikesLabel.innerText = ' Mi Piace';
+
+    const postLikesCounter = createElement('div', 'likes__counter');
+    postLikesJS.append(postLikesCounter);
+    postLikesCounter.innerText = 'Piace a ' + item['postLikes'] + ' persone';
+}
 
