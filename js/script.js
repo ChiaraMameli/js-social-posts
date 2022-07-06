@@ -148,5 +148,14 @@ for(const item of posts) {
     const postLikesCounter = createElement('div', 'likes__counter');
     postLikesJS.append(postLikesCounter);
     postLikesCounter.innerText = 'Piace a ' + item['postLikes'] + ' persone';
-}
 
+    // Al click del bottone
+    postLikesButton.addEventListener('click', function(){
+        if(!this.classList.contains('_bg-green')) {
+            this.classList.add('_bg-green');
+            postLikesCounter.innerText = 'Piace a ' + (item['postLikes'] + 1) + ' persone';
+        } else if (this.classList.contains('_bg-green')) {
+            this.classList.remove('_bg-green')
+            postLikesCounter.innerText = 'Piace a ' + item['postLikes'] + ' persone';
+            }
+    })}
